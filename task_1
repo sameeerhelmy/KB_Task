@@ -1,0 +1,29 @@
+CLIPS> (clear)
+
+CLIPS> ; Define the template for animal facts
+CLIPS> (deftemplate animal
+        (slot type))
+
+CLIPS> ; Define the rule to check the animal
+CLIPS> (defrule check_animal
+        ?a <- (animal (type ?type))
+        (test (and (neq ?type dog) (neq ?type cat)))
+        =>
+        (printout t "The animal is a " ?type "." crlf))
+
+CLIPS> ; Example facts to test the rule
+CLIPS> (assert (animal (type horse)))
+<Fact-1>
+
+CLIPS> (assert (animal (type dog)))
+<Fact-2>
+
+CLIPS> (assert (animal (type cat)))
+<Fact-3>
+
+CLIPS> (assert (animal (type elephant)))
+<Fact-4>
+
+CLIPS> (run)
+The animal is a horse.
+The animal is a elephant.
