@@ -1,0 +1,26 @@
+CLIPS> (clear)
+
+CLIPS> (deftemplate number
+        (slot value))
+
+CLIPS> (defrule Odd_number
+        (number (value ?n))
+        (test (neq (mod ?n 2) 0))
+        =>
+        (printout t "The number is odd" crlf))
+
+CLIPS> (defrule Even_number
+        (number (value ?n))
+        (test (eq (mod ?n 2) 0))
+        =>
+        (printout t "The number is even" crlf))
+
+CLIPS> (assert (number (value 7)))
+<Fact-1>
+
+CLIPS> (assert (number (value 4)))
+<Fact-2>
+
+CLIPS> (run)
+The number is odd
+The number is even
